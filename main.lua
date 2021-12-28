@@ -1,9 +1,14 @@
+push = require 'push'
+
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 
+VIRTUAL_WIDTH = 432
+VIRTUAL_HEIGHT = 243
+
 function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
-    love.window.setMode(WINDOW_WIDTH, WINDOW_HEIGHT, {
+    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
         resizable = false,
         vsync = true
@@ -17,5 +22,7 @@ function love.keypressed(key)
 end
 
 function love.draw()
-    love.graphics.printf("Hello World", 0, 300, WINDOW_WIDTH, 'center')
+    push:apply('start')
+    love.graphics.printf("Hello World", 0, 50, VIRTUAL_WIDTH, 'center')
+    push:apply('end')
 end
